@@ -1,0 +1,6 @@
+urlid shopdb
+url jdbc:hsqldb:hsql://localhost:9001/shopdb
+username student
+password student
+
+

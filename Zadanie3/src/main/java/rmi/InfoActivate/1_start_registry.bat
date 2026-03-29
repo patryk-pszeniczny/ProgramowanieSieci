@@ -1,0 +1,1 @@
+d:\java\sdk14\bin\rmiregistry 1099

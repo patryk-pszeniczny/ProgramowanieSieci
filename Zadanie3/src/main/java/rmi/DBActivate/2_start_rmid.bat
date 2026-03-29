@@ -1,0 +1,1 @@
+d:\java\sdk14\bin\rmid -J-Djava.security.policy=rmid.policy

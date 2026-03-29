@@ -1,0 +1,28 @@
+
+grant {
+	permission java.security.AllPermission;
+};
+
+/*
+grant {
+    permission com.sun.rmi.rmid.ExecPermission
+	"c:\\files\\apps\\java\\jdk1.2.2\\win32\\bin\\java";
+
+    permission com.sun.rmi.rmid.ExecPermission
+	"c:\\files\\apps\\java\\jdk1.2.2\\win32\\bin\\java_g";
+
+    permission com.sun.rmi.rmid.ExecPermission
+	"c:\\files\\apps\\rmidcmds\\*";
+
+    permission com.sun.rmi.rmid.ExecOptionPermission
+	"-Djava.security.policy=c:\\files\\policies\\group.policy";
+
+    permission com.sun.rmi.rmid.ExecOptionPermission
+	"-Djava.security.debug=*";
+
+    permission com.sun.rmi.rmid.ExecOptionPermission
+	"-Dsun.rmi.*";
+};
+*/
+
+
