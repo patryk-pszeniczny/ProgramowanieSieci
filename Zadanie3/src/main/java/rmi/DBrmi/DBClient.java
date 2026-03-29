@@ -1,63 +1,53 @@
-/*
- *  Koszalin 2003
- *  DBClient.java
- *  Klient wywolujacy zdalna metode zdalnego obiektu RMI oblugi baz danych
- *  Dariusz Rataj (C)
- */
- 
 package rmi.DBrmi;
 
-import java.util.*;
-import java.rmi.*;
+import java.rmi.Naming;
+import java.util.Vector;
 
 public class DBClient {
 
- public static void main(String[] args) {
- 
-  String table = "books";
-  /* ustawienie zarzadcy ochrony */
-  System.setSecurityManager(new RMISecurityManager());
-  try {
-  
-    /* utworzenie obiektu zdalnego */
-   DBInterface robject = (DBInterface) Naming.lookup("rmi://localhost/DatabaseObject");
-   
-   /* wywolanie metody zdalnej - polaczenie z baza danych */
-   robject.connectDatabase();
-   
-   /* wywolanie metody zdalnej - pobranie ilosci kolumn */
-   int colcount = robject.getColumnCount(table);
-   System.out.println("\n\r --------------- Dane tabeli " + table + "-------------------- ");
-   
-   /* wywolanie metody zdalnej - pobranie nazw kolumn */
-   Vector columns = robject.getColumns(table);
-   /* wywolanie metody zdalnej - pobranie danych z tabeli */
-   Vector data = robject.getTableData(table);
-   int rowcount = data.size()/colcount;
-   System.out.println("Cols: " + colcount + " Rows:"+ rowcount);
+  public static void main(String[] args) {
+    String host = args.length > 0 ? args[0] : "127.0.0.1";
+    String table = args.length > 1 ? args[1] : "customer_tbl";
+    int port = 1099;
 
-   /* wyswietlenie nazw kolumn tabeli */
-   for (int i = 0 ; i < columns.size(); i++) {
-     System.out.print("| " + (i+1) + "." + columns.elementAt(i) + "\t");
-   }
-   System.out.println("\n -------------------------------------------------------");
-   /* wyswietlenie danych tabeli */
-   for (int i = 0 ; i < rowcount; i++) {
-   for (int j = 0 ; j < colcount; j++) {
-     System.out.print("| " + data.elementAt(i*colcount+j) + "\t");
+    try {
+      DBInterface remoteObject =
+          (DBInterface) Naming.lookup("rmi://" + host + ":" + port + "/DatabaseObject");
+
+      remoteObject.connectDatabase();
+
+      int colcount = remoteObject.getColumnCount(table);
+      Vector columns = remoteObject.getColumns(table);
+      Vector data = remoteObject.getTableData(table);
+
+      if (colcount <= 0) {
+        System.out.println("Brak kolumn do wyswietlenia dla tabeli: " + table);
+        remoteObject.disconnectDatabase();
+        return;
+      }
+
+      int rowcount = data.size() / colcount;
+      System.out.println("--------------- Dane tabeli " + table + " --------------------");
+      System.out.println("Cols: " + colcount + " Rows: " + rowcount);
+
+      for (int i = 0; i < columns.size(); i++) {
+        System.out.print("| " + (i + 1) + "." + columns.elementAt(i) + "\t");
+      }
+      System.out.println();
+      System.out.println("---------------------------------------------------------------");
+
+      for (int i = 0; i < rowcount; i++) {
+        for (int j = 0; j < colcount; j++) {
+          System.out.print("| " + data.elementAt(i * colcount + j) + "\t");
+        }
+        System.out.println();
+      }
+
+      remoteObject.disconnectDatabase();
+      System.out.println("---------------------------------------------------------------");
+    } catch (Exception ex) {
+      System.out.println("Blad wywolania obiektu: " + ex);
+      ex.printStackTrace();
     }
-    System.out.print("\n");
-   } 
-   /* wywolanie metody zdalnej - zakniecie polaczenia z baza danych */
-   robject.disconnectDatabase();
-
-   System.out.println(" ------------------------------------------------------- ");
-  } catch (Exception ex) { 
-     System.out.println("Blad wywolania obiektu: " + ex); 
-    }
- } // main
- 
-} // DBClient   
-
-
-
+  }
+}

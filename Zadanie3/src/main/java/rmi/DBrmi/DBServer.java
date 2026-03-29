@@ -1,35 +1,28 @@
-/*
- *  Koszalin 2003
- *  DBServer.java
- *  Serwer udostepniajacy zdalny obiekt RMI oblugi baz danych
- *  Dariusz Rataj (C)
- */
- 
 package rmi.DBrmi;
 
-import java.rmi.*;
-import java.rmi.server.*;
+import java.rmi.Naming;
+import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
 
 public class DBServer {
 
- public static void main(String[] args) {
- 
-   System.setSecurityManager(new RMISecurityManager());
-   
-   try {
-   
-    /* utworzenie instancji zdalnego obiektu */
-    DBImplementation robject = new DBImplementation();
-    
-    /* wystawienie (rejestracja) obiektu */
-    // Naming.rebind("rmi://localhost/DatabaseObject", robject);
-    Naming.rebind("DatabaseObject", robject);
+  private static final int REGISTRY_PORT = 1099;
 
-    System.out.println("Obiekt DatabaseObject przygotowany... czekam...");
-   } catch (Exception ex)  { 
-      System.out.println("Blad aktywacji obiektu: " + ex); 
-     }
- }
- 
-} // DBServer 
+  public static void main(String[] args) {
+    try {
+      try {
+        LocateRegistry.createRegistry(REGISTRY_PORT);
+        System.out.println("Uruchomiono lokalny rejestr RMI na porcie " + REGISTRY_PORT);
+      } catch (RemoteException ignored) {
+        System.out.println("Rejestr RMI juz dziala na porcie " + REGISTRY_PORT);
+      }
 
+      DBImplementation remoteObject = new DBImplementation();
+      Naming.rebind("rmi://127.0.0.1:" + REGISTRY_PORT + "/DatabaseObject", remoteObject);
+      System.out.println("Obiekt DatabaseObject przygotowany... czekam...");
+    } catch (Exception ex) {
+      System.out.println("Blad aktywacji obiektu: " + ex);
+      ex.printStackTrace();
+    }
+  }
+}

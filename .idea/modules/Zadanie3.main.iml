@@ -9,5 +9,14 @@
     </content>
     <orderEntry type="jdk" jdkName="25" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library">
+      <library name="Gradle: hsqldb.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../Zadanie3/src/main/java/shopdata/lib/hsqldb.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>

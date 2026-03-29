@@ -5,6 +5,7 @@
  *  Dariusz Rataj (C)
  */
 package rmi.DateRmi;
+
 import java.rmi.*;
 import java.rmi.server.*;
 import java.util.*;
@@ -14,14 +15,14 @@ public class DateImplementation extends UnicastRemoteObject implements DateInter
 
  
  public DateImplementation() throws RemoteException {
-   super(); // wywoďż˝anie konstruktora klasy UnicastRemoteObject
+   super();
  }
 
  /* implementacja metody zdalnej */
  public String getDate() throws RemoteException {
 
   Date date = new Date();
-  System.out.println("Zdalne wywolanie metody getDate() klasy DateImplementation");
+  System.out.println("Zdalne wywolanie metody getDate()");
   return date.toString();
  } // getDate
   

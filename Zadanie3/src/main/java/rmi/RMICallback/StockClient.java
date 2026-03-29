@@ -1,32 +1,28 @@
-/*
- *  Koszalin 2004
- *  Klient Stock - Callback Demo
- *  Dariusz Rataj (C)
- */
- 
 package rmi.RMICallback;
 
-import java.rmi.*;
-import java.rmi.server.*;
-import java.util.*;
+import java.rmi.Naming;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 
 public class StockClient implements StockUpdate {
 
-  public static void main(String args[]) {
+  public static void main(String[] args) {
     StockClient client = new StockClient();
     try {
-      UnicastRemoteObject.exportObject(client);  // aktywacja metod zd. obiektu
-      StockInterface stockObject = (StockInterface)Naming.lookup("rmi://127.0.0.1:1099/StockTpsa");
+      UnicastRemoteObject.exportObject(client, 0);
+      StockInterface stockObject =
+          (StockInterface) Naming.lookup("rmi://127.0.0.1:1099/StockTpsa");
       stockObject.regCallback(client);
+      System.out.println("Klient callback podlaczony. Czekam na aktualizacje...");
     } catch (Exception ex) {
       System.err.println("Blad: " + ex);
+      ex.printStackTrace();
       System.exit(2);
     }
   }
-  /* metoda zdalna */
+
+  @Override
   public synchronized void updatePrice(String name, String price) throws RemoteException {
-    System.out.println(" Aktualizacja danych: papier " + name + " = " + price + " zl");
+    System.out.println("Aktualizacja danych: papier " + name + " = " + price + " zl");
   }
 }
-
-

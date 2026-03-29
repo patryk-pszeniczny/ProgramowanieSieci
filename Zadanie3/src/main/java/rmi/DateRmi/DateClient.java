@@ -4,33 +4,24 @@
  *  Klient wywolujacy zdalna metode zdalnego obiektu RMI
  *  Dariusz Rataj (C)
  */
- 
+
 package rmi.DateRmi;
 
-import java.rmi.*;
+import java.rmi.Naming;
 
 public class DateClient {
 
- public static void main(String[] args) {
+  public static void main(String[] args) {
+    String host = args.length > 0 ? args[0] : "127.0.0.1";
+    int port = 1099;
 
-  /* ustawienie zarzadcy ochrony */
-  System.setSecurityManager(new RMISecurityManager());
-  try {
-  
-    /* utworzenie obiektu zdalnego */
-   DateInterface robject = (DateInterface) Naming.lookup("rmi://localhost/DateObject");
-   
-    /* wywolanie metody zdalnej */
-   String date = robject.getDate();
-   
-   System.out.println("Data na zdalnym hoscie: " + date );
-    
-  } catch (Exception ex) { 
-     System.out.println("Blad wywolania obiektu: " + ex); 
+    try {
+      DateInterface remoteObject = (DateInterface) Naming.lookup("rmi://" + host + ":" + port + "/DateObject");
+      String date = remoteObject.getDate();
+      System.out.println("Data na zdalnym hoscie: " + date);
+    } catch (Exception ex) {
+      System.out.println("Blad wywolania obiektu: " + ex);
     }
- } // main
- 
-} // DateClient   
-
-
+  }
+}
 

@@ -5,28 +5,31 @@
  *  Dariusz Rataj (C)
  */
 package rmi.DateRmi;
-import java.rmi.*;
-import java.rmi.server.*;
+
+import java.rmi.Naming;
+import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
 
 public class DateServer {
 
- public static void main(String[] args) {
- 
-   System.setSecurityManager(new RMISecurityManager());
-   
-   try {
-   
-    /* utworzenie instancji zdalnego obiektu */
-    DateImplementation robject = new DateImplementation();
-    
-    /* wystawienie (rejestracja) obiektu */
-    Naming.rebind("rmi://localhost/DateObject", robject);
-    
-    System.out.println("Obiekt DateObject przygotowany");
-   } catch (Exception ex)  { 
-      System.out.println("Blad aktywacji obiektu" + ex); 
-     }
- }
- 
-} // DateServer 
+  private static final int REGISTRY_PORT = 1099;
+
+  public static void main(String[] args) {
+    try {
+      try {
+        LocateRegistry.createRegistry(REGISTRY_PORT);
+        System.out.println("Uruchomiono lokalny rejestr RMI na porcie " + REGISTRY_PORT);
+      } catch (RemoteException ignored) {
+        System.out.println("Rejestr RMI juz dziala na porcie " + REGISTRY_PORT);
+      }
+
+      DateImplementation remoteObject = new DateImplementation();
+      Naming.rebind("rmi://127.0.0.1:" + REGISTRY_PORT + "/DateObject", remoteObject);
+      System.out.println("Obiekt DateObject przygotowany");
+    } catch (Exception ex) {
+      System.out.println("Blad aktywacji obiektu: " + ex.getMessage());
+      ex.printStackTrace();
+    }
+  }
+}
 
