@@ -5,6 +5,8 @@
  *  Dariusz Rataj (C)
  */
 
+package rmi.InfoActivate.serwer;
+
 import java.rmi.*;
 import java.rmi.activation.*;
 import java.util.*;
@@ -33,7 +35,7 @@ public class InfoSetup {
     MarshalledObject initdata = null; 
 
     // utworzenie deskryptora obiektu do aktywacji
-    ActivationDesc descriptor = new ActivationDesc("InfoActivatable", lokalizacja, initdata); 
+    ActivationDesc descriptor = new ActivationDesc("rmi.InfoActivate.serwer.InfoActivatable", lokalizacja, initdata); 
     // utworzenie interfejsu (powiazanie z deskryptorem)
     InfoInterface interfejs = (InfoInterface) Activatable.register(descriptor);
     // rejestracja obiektu w RMI Registry
@@ -52,3 +54,4 @@ public class InfoSetup {
 
  
  }
+

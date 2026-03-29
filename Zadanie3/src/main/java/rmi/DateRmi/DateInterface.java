@@ -4,7 +4,7 @@
  *  Interfejs obiektu zdalnego RMI
  *  Dariusz Rataj (C)
  */
-
+package rmi.DateRmi;
 import java.rmi.*;
 
 public interface DateInterface extends Remote {

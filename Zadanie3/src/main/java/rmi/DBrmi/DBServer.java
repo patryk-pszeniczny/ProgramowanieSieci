@@ -5,6 +5,8 @@
  *  Dariusz Rataj (C)
  */
  
+package rmi.DBrmi;
+
 import java.rmi.*;
 import java.rmi.server.*;
 
@@ -30,3 +32,4 @@ public class DBServer {
  }
  
 } // DBServer 
+

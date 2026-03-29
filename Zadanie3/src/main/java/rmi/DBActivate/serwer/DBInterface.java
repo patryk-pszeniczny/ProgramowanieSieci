@@ -5,6 +5,8 @@
  *  Dariusz Rataj (C)
  */
 
+package rmi.DBActivate.serwer;
+
 import java.rmi.*;
 import java.util.*;
 

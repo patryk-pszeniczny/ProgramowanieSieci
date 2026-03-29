@@ -4,6 +4,8 @@
  *  Dariusz Rataj (C)
  */
  
+package rmi.RMICallback;
+
 import java.awt.*;
 import java.applet.*;
 import java.util.*;

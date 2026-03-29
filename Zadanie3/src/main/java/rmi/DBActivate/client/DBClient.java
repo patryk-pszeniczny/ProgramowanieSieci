@@ -4,10 +4,12 @@
  *  Klient wywolujacy zdalna metode zdalnego obiektu RMI
  *  Dariusz Rataj (C)
  */
- 
+package rmi.DBActivate.client;
+
 import java.rmi.*;
 import java.util.*;
 import java.sql.*;
+import rmi.DBActivate.serwer.DBInterface;
 
 public class DBClient {
 
@@ -60,5 +62,6 @@ public class DBClient {
  } // main
  
 } // InfoClient   
+
 
 

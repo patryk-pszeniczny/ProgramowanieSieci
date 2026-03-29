@@ -4,7 +4,7 @@
  *  Implementacja klasy zdalnego obiektu RMI
  *  Dariusz Rataj (C)
  */
- 
+package rmi.DBActivate.serwer;
 import java.rmi.*;
 import java.rmi.activation.*;
 import java.util.*;
@@ -17,7 +17,7 @@ public class DBActivatable extends Activatable implements DBInterface {
  Statement stmt = null;
  
  public DBActivatable(ActivationID id, MarshalledObject data) throws RemoteException {
-  super(id, 0); // wywo�anie konstruktora klasy Activatable
+  super(id, 0); // wywoďż˝anie konstruktora klasy Activatable
   try {
    if (data != null)
    url = (String)data.get();
@@ -122,3 +122,4 @@ public class DBActivatable extends Activatable implements DBInterface {
  } // getData
  
 } // DBActivatable
+

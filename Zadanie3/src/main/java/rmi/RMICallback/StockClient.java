@@ -4,6 +4,8 @@
  *  Dariusz Rataj (C)
  */
  
+package rmi.RMICallback;
+
 import java.rmi.*;
 import java.rmi.server.*;
 import java.util.*;
@@ -26,4 +28,5 @@ public class StockClient implements StockUpdate {
     System.out.println(" Aktualizacja danych: papier " + name + " = " + price + " zl");
   }
 }
+
 

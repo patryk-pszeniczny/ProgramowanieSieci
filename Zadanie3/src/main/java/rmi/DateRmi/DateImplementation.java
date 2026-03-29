@@ -4,7 +4,7 @@
  *  Implementacja klasy zdalnego obiektu RMI
  *  Dariusz Rataj (C)
  */
- 
+package rmi.DateRmi;
 import java.rmi.*;
 import java.rmi.server.*;
 import java.util.*;
@@ -14,7 +14,7 @@ public class DateImplementation extends UnicastRemoteObject implements DateInter
 
  
  public DateImplementation() throws RemoteException {
-   super(); // wywo�anie konstruktora klasy UnicastRemoteObject
+   super(); // wywoďż˝anie konstruktora klasy UnicastRemoteObject
  }
 
  /* implementacja metody zdalnej */
@@ -26,3 +26,4 @@ public class DateImplementation extends UnicastRemoteObject implements DateInter
  } // getDate
   
 } // DateImplementation
+

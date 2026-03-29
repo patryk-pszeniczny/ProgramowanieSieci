@@ -5,6 +5,8 @@
  *  Dariusz Rataj (C)
  */
  
+package rmi.DateRmi;
+
 import java.rmi.*;
 
 public class DateClient {
@@ -29,5 +31,6 @@ public class DateClient {
  } // main
  
 } // DateClient   
+
 
 

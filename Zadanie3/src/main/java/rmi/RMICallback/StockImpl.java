@@ -5,6 +5,8 @@
  *  Dariusz Rataj (C)
  */
 
+package rmi.RMICallback;
+
 import java.rmi.*;
 import java.rmi.server.*;
 import java.rmi.registry.LocateRegistry;
@@ -46,7 +48,7 @@ public class StockImpl extends UnicastRemoteObject implements StockInterface, Ru
   } // while
  } // run
   
-  /* metoda zdalna - rejestracja klienta na liúcie do aktualizacji danych*/
+  /* metoda zdalna - rejestracja klienta na li≈õcie do aktualizacji danych*/
   public synchronized void regCallback(StockUpdate obj) throws RemoteException {
     if (!(clients.contains(obj))) { // czy klienta na liscie
       clients.addElement(obj);
@@ -75,3 +77,4 @@ public class StockImpl extends UnicastRemoteObject implements StockInterface, Ru
     }
   }
 }
+

@@ -5,6 +5,8 @@
  *  Dariusz Rataj (C)
  */
  
+package rmi.DBrmi;
+
 import java.util.*;
 import java.sql.*;
 import java.rmi.*;
@@ -18,7 +20,7 @@ public class DBImplementation extends UnicastRemoteObject implements DBInterface
  Statement stmt = null;
 
  public DBImplementation() throws RemoteException {
-   super(); // wywo≥anie konstruktora klasy UnicastRemoteObject
+   super(); // wywo≈Çanie konstruktora klasy UnicastRemoteObject
  }
 
  public void connectDatabase() throws RemoteException {
@@ -117,3 +119,4 @@ public class DBImplementation extends UnicastRemoteObject implements DBInterface
 
 
 } // DBImplementation
+

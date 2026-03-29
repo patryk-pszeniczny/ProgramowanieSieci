@@ -5,6 +5,8 @@
  *  Dariusz Rataj (C)
  */
 
+package rmi.InfoActivate.serwer;
+
 import java.rmi.*;
 
 public interface InfoInterface extends Remote {

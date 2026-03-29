@@ -4,7 +4,7 @@
  *  Serwer udostepniajacy zdalny obiekt RMI
  *  Dariusz Rataj (C)
  */
- 
+package rmi.DateRmi;
 import java.rmi.*;
 import java.rmi.server.*;
 
@@ -29,3 +29,4 @@ public class DateServer {
  }
  
 } // DateServer 
+

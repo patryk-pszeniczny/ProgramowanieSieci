@@ -5,6 +5,8 @@
  *  Dariusz Rataj (C)
  */
  
+package rmi.DBrmi;
+
 import java.util.*;
 import java.rmi.*;
 
@@ -56,5 +58,6 @@ public class DBClient {
  } // main
  
 } // DBClient   
+
 
 

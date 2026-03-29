@@ -5,7 +5,10 @@
  *  Dariusz Rataj (C)
  */
  
+package rmi.InfoActivate.client;
+
 import java.rmi.*;
+import rmi.InfoActivate.serwer.InfoInterface;
 
 public class InfoClient {
 
@@ -34,5 +37,6 @@ public class InfoClient {
  } // main
  
 } // InfoClient   
+
 
 

@@ -6,6 +6,8 @@
  *  Dariusz Rataj (C)
  */
 
+package rmi.RMIRegistryList;
+
 import java.io.*;
 import java.rmi.*;
 
@@ -34,7 +36,7 @@ public void deleteObjects(){
          System.err.println("Obiekt nie zwiazany!");
       }
       catch (ServerException e) {
-         System.err.println("unbind () - Brak dostepu do obiektu! Dostêp tylko lokalny.");
+         System.err.println("unbind () - Brak dostepu do obiektu! DostÄ™p tylko lokalny.");
       }
 
    }

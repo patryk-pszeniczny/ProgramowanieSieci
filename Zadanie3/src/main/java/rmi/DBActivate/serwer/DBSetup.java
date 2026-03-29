@@ -5,6 +5,8 @@
  *  Dariusz Rataj (C)
  */
 
+package rmi.DBActivate.serwer;
+
 import java.rmi.*;
 import java.rmi.activation.*;
 import java.util.*;
@@ -34,7 +36,7 @@ public class DBSetup {
     // obiekt przekazujacy dane do aktywowanego obiektu - tutaj url do bazy danych
     MarshalledObject initdata = new MarshalledObject(new String("jdbc:odbc:BooksDB1")); 
     // utworzenie deskryptora obiektu do aktywacji
-    ActivationDesc descriptor = new ActivationDesc("DBActivatable", lokalizacja, initdata); 
+    ActivationDesc descriptor = new ActivationDesc("rmi.DBActivate.serwer.DBActivatable", lokalizacja, initdata); 
     // utworzenie interfejsu (powiazanie z deskryptorem)
     DBInterface interfejs = (DBInterface) Activatable.register(descriptor);
     // rejestracja obiektu w RMI Registry
@@ -42,7 +44,7 @@ public class DBSetup {
     
     // -------- obiekt 2 --------------
     initdata = new MarshalledObject(new String("jdbc:odbc:BooksDB2")); 
-    descriptor = new ActivationDesc("DBActivatable", lokalizacja, initdata); 
+    descriptor = new ActivationDesc("rmi.DBActivate.serwer.DBActivatable", lokalizacja, initdata); 
     interfejs = (DBInterface) Activatable.register(descriptor);
     Naming.rebind("DBObject2", interfejs);
 
@@ -60,3 +62,4 @@ public class DBSetup {
 
  
  }
+

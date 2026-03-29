@@ -5,6 +5,8 @@
  *  Dariusz Rataj (C)
  */
 
+package rmi.DBrmi;
+
 import java.util.*;
 import java.rmi.*;
 

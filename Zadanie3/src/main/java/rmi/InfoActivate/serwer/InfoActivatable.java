@@ -5,6 +5,8 @@
  *  Dariusz Rataj (C)
  */
  
+package rmi.InfoActivate.serwer;
+
 import java.rmi.*;
 import java.rmi.activation.*;
 import java.util.*;
@@ -14,7 +16,7 @@ public class InfoActivatable extends Activatable implements InfoInterface {
 
  
  public InfoActivatable(ActivationID id, MarshalledObject data) throws RemoteException {
-   super(id, 0); // wywo≥anie konstruktora klasy Activatable
+   super(id, 0); // wywo≈Çanie konstruktora klasy Activatable
  }
 
  /* implementacja metody zdalnej */
@@ -37,3 +39,4 @@ public class InfoActivatable extends Activatable implements InfoInterface {
  } // getJVMInfo
  
 } // InfoActivatable
+
