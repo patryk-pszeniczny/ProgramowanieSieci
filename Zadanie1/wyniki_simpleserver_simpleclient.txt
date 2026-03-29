@@ -1,0 +1,32 @@
+Zadanie 9 - Przyklad 8 i 9 (SimpleServer i SimpleClient)
+Data testow: 2026-03-08
+
+a) Zestawienie polaczenia miedzy stanowiskami
+Uzyte uruchomienia:
+  Serwer: java -cp build\classes\java\main kstcp.SimpleServer 4444
+  Klient: java -cp build\classes\java\main kstcp.SimpleClient 127.0.0.1 4444
+Wynik:
+  - polaczenie TCP zostalo zestawione poprawnie
+  - klient pokazal: "Polaczono z serwerem ...", potem odebral "quit"
+  - serwer odebral od klienta: "Jest na linii! Pisz Serwerze!!!"
+
+Dodatkowy test (adres IPv4 interfejsu hosta):
+  Klient: java -cp build\classes\java\main kstcp.SimpleClient 192.168.68.147 4444
+Wynik:
+  - polaczenie poprawne przez adres IPv4 hosta
+
+b) Ile zgloszen klientow moze oczekiwac w kolejce serwera
+Warunki testu:
+  - serwer uruchomiony z backlog=50:
+    java -cp build\classes\java\main kstcp.SimpleServer 4444 50
+  - 1 klient aktywny (polaczenie zaakceptowane przez serwer)
+  - 200 dodatkowych prob polaczenia podczas blokady serwera na pierwszym kliencie
+Wynik pomiaru:
+  - udane polaczenia TCP (razem z pierwszym): 51
+  - nieudane/timeout: 150
+  - obserwowana pojemnosc kolejki oczekujacych: ok. 50
+
+c) Podsumowanie
+  - SimpleServer i SimpleClient lacza sie poprawnie.
+  - Kolejka oczekujacych klientow dla serwera ustawionego na backlog=50 wyniosla ok. 50.
+  - W praktyce wynik backlog moze zalezec od systemu operacyjnego i konfiguracji stosu TCP/IP.

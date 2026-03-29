@@ -1,0 +1,77 @@
+Zadanie2 UDP - raport uruchomien i wynikow
+Data testow: 2026-03-08
+
+2) Przyklad 1 i 2 (SendDatagram + ReceiveDatagram)
+a) Komunikacja lokalna
+Uruchomienia:
+  Serwer: java -cp build\classes\java\main udp.ReceiveDatagram 5500 5
+  Klient: java -cp build\classes\java\main udp.SendDatagram 127.0.0.1 5500 5 100
+Wynik:
+  - klient wyslal 5 datagramow
+  - serwer odebral 5/5 datagramow poprawnie
+
+b) Scenariusz "miedzy stanowiskami" (test przez IPv4 hosta)
+Uruchomienia:
+  Serwer: java -cp build\classes\java\main udp.ReceiveDatagram 5502 3
+  Klient: java -cp build\classes\java\main udp.SendDatagram 192.168.215.147 5502 3 100
+Wynik:
+  - odebrano 3/3 datagramy przez adres IPv4 hosta
+
+c) Wniosek:
+  - aplikacje SendDatagram i ReceiveDatagram komunikuja sie poprawnie.
+
+3) Przyklad 3 i 4 (DatagramClient + DatagramServer)
+a) Odczyt daty i godziny z hostow (timeout 3000 ms)
+Uruchomienie:
+  java -cp build\classes\java\main udp.DatagramClient "moskit.ie.tu.koszalin.pl,kos.man.koszalin.pl,vega.ck.poznan.pl,wp.pl" 13 3000
+Wynik:
+  - moskit.ie.tu.koszalin.pl: timeout
+  - kos.man.koszalin.pl: timeout
+  - vega.ck.poznan.pl: nieznany host
+  - wp.pl: timeout
+
+b) Komunikacja klient-serwer miedzy stanowiskami (test lokalny i przez IPv4)
+Uruchomienia:
+  Serwer: java -cp build\classes\java\main udp.DatagramServer 5513
+  Klient: java -cp build\classes\java\main udp.DatagramClient 127.0.0.1 5513 3000
+Wynik:
+  - klient odebral odpowiedz z data/czasem RFC 1123
+  - analogiczny test przez IPv4 hosta (192.168.215.147) na porcie 5514 zakonczony poprawnie
+
+c) Wniosek:
+  - klient i serwer daytime UDP komunikuja sie poprawnie; dla hostow zewnetrznych usluga moze byc niedostepna.
+
+4) Przyklad 5 i 6 (CopyFileServer + CopyFileClient)
+a) Kopiowanie pliku przez UDP
+Uruchomienia:
+  Serwer: java -cp build\classes\java\main udp.CopyFileServer udp_test_files\source.bin 5601
+  Klient: java -cp build\classes\java\main udp.CopyFileClient 127.0.0.1 5601 udp_test_files\copied.bin 25000
+Wynik:
+  - przeslano 4 kawalki (8192, 8192, 8192, 424)
+  - rozmiar pliku zrodlowego: 25000 B
+  - porownanie SHA256 source vs copied: zgodne (kopiowanie poprawne)
+
+b) Wniosek:
+  - transfer pliku UDP dziala poprawnie dla testu lokalnego.
+
+Zadania dodatkowe
+
+1) Echo UDP (port 7) - serwer iteracyjny i wspolbiezny + klient
+Iteracyjny:
+  Serwer: java -cp build\classes\java\main udp.EchoUdpServerIterative
+  Klient: java -cp build\classes\java\main udp.EchoUdpClient 127.0.0.1 7 3 "Echo UDP"
+  Wynik: 3/3 echo odebrane.
+
+Wspolbiezny:
+  Serwer: java -cp build\classes\java\main udp.EchoUdpServerConcurrent 7008
+  Klienci: 5 klientow rownolegle (po 1 pakiecie)
+  Wynik: wszyscy klienci odebrali echo, log serwera pokazuje obsluge w wielu watkach.
+
+2) Klient/serwer UDP z formatem Komunikat\X / Odpowiedz\X
+Uruchomienia:
+  Serwer: java -cp build\classes\java\main udp.UdpReplyServer 7010
+  Klient: java -cp build\classes\java\main udp.UdpReplyClient 127.0.0.1 7010 5
+Wynik:
+  - serwer odbiera Komunikat\01..\05 i odsylal Odpowiedz\01..\05
+  - klient: "Wyslano 5 i otrzymano 5 pakietow"
+  - klient czeka do 5 sekund na kazdy pakiet, ignoruje odpowiedzi niedopasowane do aktualnego numeru.

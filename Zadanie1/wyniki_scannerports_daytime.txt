@@ -1,0 +1,41 @@
+Zadanie - scannerPorts wielowatkowy + serwer daytime
+Data testow: 2026-03-08
+
+1) scannerPorts - wersja wielowatkowa i porownanie czasu
+Uruchomienie porownawcze:
+  java -cp build\classes\java\main kstcp.scannerPorts --host=127.0.0.1 --from=1 --to=5000 --timeout=200 --compare
+
+Wyniki:
+  - ITERACYJNY: 15399 ms
+  - WIELOWATKOWY (2 watki): 6200 ms
+  - WIELOWATKOWY (5 watkow): 3233 ms
+  - WIELOWATKOWY (10 watkow): 822 ms
+  - otwarte porty (we wszystkich wariantach): [135, 445, 623, 664]
+
+Wniosek:
+  - zwiekszanie liczby watkow przyspiesza skanowanie (w tym pomiarze 10 watkow bylo najszybsze).
+
+2) Serwer daytime (port 13) - iteracyjny i wspolbiezny
+
+2a) Wariant iteracyjny
+Uruchomienie:
+  java -cp build\classes\java\main kstcp.dayTimeServerIterative
+Test:
+  - 3 kolejne polaczenia TCP do 127.0.0.1:13
+Wynik:
+  - kazde polaczenie otrzymalo date/czas (RFC 1123), np.:
+    "Sun, 8 Mar 2026 10:10:35 +0100"
+  - serwer obsluzyl klientow kolejno.
+
+2b) Wariant wspolbiezny
+Uruchomienie:
+  java -cp build\classes\java\main kstcp.dayTimeServerConcurrent
+Test:
+  - 10 klientow uruchomionych rownolegle do 127.0.0.1:13
+Wynik:
+  - wszyscy klienci otrzymali odpowiedz z data/czasem
+  - log serwera pokazal obsluge w wielu watkach (Thread-0, Thread-1, ...).
+
+Wniosek:
+  - oba warianty realizuja usluge daytime na porcie 13.
+  - wariant wspolbiezny umozliwia rownolegla obsluge wielu klientow.

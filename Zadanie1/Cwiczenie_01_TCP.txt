@@ -1,0 +1,54 @@
+1. Skompilować wszystkie podane przykłady (1-9) za pomocą linii poleceń OS
+lub wybranego środowiska IDE.
+2. Dla przykładu 1 (DemoInetAddress):
+a. uruchomić aplikację i zanotować wyniki (nazwy i adresy)
+b. zmodyfikować program i sprawdzić adresy hostów: wbiis.tu.koszalin.pl,
+termit.ie.tu.koszalin.pl, ibm.com
+c. zmodyfikować program i sprawdzić nazwy hostów: 192.168.55.20,
+148.81.247.7, 153.19.134.114
+d. zanotować uzyskane wyniki
+3. Dla przykładu 2 (GetAllAddresses):
+a. zbadać adresy IP dla nazw: ibm.com, microsoft.com, java.sun.com,
+
+Koszalin 2023
+Programowanie dla sieci
+dr inż. Dariusz Bernatowicz
+termit.ie.tu.koszalin.pl
+b. zanotować uzyskane wyniki
+4. Dla przykładu 3 (ScannerPorts):
+a. wykonać skanowanie portów na lokalnym hoście i komputera w sieci
+(sąsiedniego komputera na sali)
+b. zanotować uzyskane wyniki
+5. Dla przykładu 4 (DayTimeClient):
+a. pobrać datę i czas z hostów: vega.ck.poznan.pl, moskit.ie.tu.koszalin.pl,
+b. zmodyfikować program zmieniając nr portu na 80 (http) i uruchomić
+(Uwaga! jeżeli nie jest ustawiony timeout dla gniazda aplikacja będzie
+czekać bez końca - ustawić timeout)
+c. zanotować uzyskane wyniki
+6. Dla przykładu 5 (HttpClient):
+a. uruchomić aplikację i pobrać strony z hostów: termit.ie.tu.koszalin.pl,
+kos.man.koszalin.pl, www.weii.tu.koszalin.pl
+b. zmodyfikować aplikację o możliwość zapisu dokumentu do pliku
+c. zanotować uzyskane wyniki
+7. Dla przykładu 6 (JHTTPServer):
+a. uruchomić aplikację serwera i przetestować za pomocą dostępnej
+przeglądarki (np. IE, Firefox, Netscape, Opera)
+b. uruchomić aplikację serwera i aplikację HttpClient z przykładu 5 tak aby
+HttpClient komunikował się z JHTTPServer
+c. zanotować uzyskane wyniki
+8. Dla przykładu 7 (JHTTPApp):
+a. uruchomić aplikację serwera i przetestować za pomocą dostępnej
+przeglądarki (np. IE, Firefox, Netscape, Opera)
+b. uruchomić aplikację serwera i aplikację HttpClient z przykładu 5 tak aby
+HttpClient komunikował się z JHTTPApp
+c. zanotować uzyskane wyniki
+9. Dla przykładu 8 i 9 (SimpleServer i SimpleClient):
+a. zestawić połączenie między dwoma sąsiednimi stanowiskami
+b. sprawdzić ile zgłoszeń klientów może oczekiwać w kolejce serwera
+c. zanotować uzyskane wyniki
+Zadnia dodatkowe
+1. Zmodyfikować program scannerPorts do wersji wielowątkowej, tak aby
+skanowanie portów odbywało się z zadaną liczbą wątków. Porównać czas
+realizacji procesu skanowania z wersją iteracyjną dla 2, 5 i 10 wątków.
+2. Napisać aplikację serwera realizującego usługę daytime (port 13). Serwer
+wykonać w dwóch wariantach: iteracyjnym i współbieżnym.

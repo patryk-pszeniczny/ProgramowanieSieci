@@ -1,0 +1,125 @@
+
+Zadanie 1 
+
+Zadanie 2 (demoInetAddress)
+Komendy uruchomienia:
+1) java -cp build\classes\java\main kstcp.demoInetAddress
+Wyniki:
+a) nazwa i adres lokalnego hosta:
+  - Nazwa lokalnego hosta: i4B
+  - Adres lokalnego hosta: 192.168.215.147
+b) adresy hostow:
+  - wbiis.tu.koszalin.pl -> 62.108.178.11
+  - termit.ie.tu.koszalin.pl -> 62.108.180.241
+  - ibm.com -> 95.101.46.117
+c) nazwy hostow dla IP:
+  - 192.168.55.20 -> 192.168.55.20
+  - 148.81.247.7 -> 148.81.247.7
+  - 153.19.134.114 -> 153.19.134.114
+
+Zadanie 3 (getAllAddresses)
+Komendy uruchomienia:
+1) java -cp build\classes\java\main kstcp.getAllAddresses
+Wyniki:
+- ibm.com -> 95.101.46.117
+- microsoft.com -> 150.171.109.51
+- java.sun.com -> 92.123.189.66, 92.123.189.82
+- termit.ie.tu.koszalin.pl -> 62.108.180.241
+
+Zadanie 4 (scannerPorts)
+Komendy uruchomienia:
+1) java -cp build\classes\java\main kstcp.scannerPorts --host=127.0.0.1 --from=1 --to=1024 --timeout=200 --threads=1
+2) java -cp build\classes\java\main kstcp.scannerPorts --host=192.168.215.147 --from=1 --to=1024 --timeout=50 --threads=1
+Wyniki:
+- host lokalny: 127.0.0.1
+  - otwarte porty: 135, 445, 623, 664
+- host w sieci (test po IPv4): 192.168.215.147
+  - otwarte porty: 135, 139, 445, 623, 664
+
+Zadanie 5 (dayTimeClient)
+Komendy uruchomienia:
+1) java -cp build\classes\java\main kstcp.dayTimeClient
+2) (test na wlasnym serwerze, terminal 1) javac DaytimeTCPServer.java
+3) (test na wlasnym serwerze, terminal 1) java -cp . DaytimeTCPServer 1313 concurrent
+4) (test na wlasnym serwerze, terminal 1) java -cp build\classes\java\main kstcp.dayTimeClient 127.0.0.1 1313 1313 2000
+Wyniki:
+a) hosty z polecenia:
+  - Port 13:
+    - vega.ck.poznan.pl -> Nieznany host
+    - moskit.ie.tu.koszalin.pl -> Timeout 5000 ms
+  - Port 80:
+    - vega.ck.poznan.pl -> Nieznany host
+    - moskit.ie.tu.koszalin.pl -> Timeout 5000 ms
+b) test na wlasnym serwerze DaytimeTCPServer:
+  - uruchomiono serwer: DaytimeTCPServer 1313 concurrent
+  - klient: kstcp.dayTimeClient 127.0.0.1 1313 1313 2000
+  - wynik: poprawny odbior daty i czasu (RFC 1123)
+    - Host: 127.0.0.1 port: 1313 -> Wynik: date i czas: Sun, 8 Mar 2026 11:40:32 +0100
+
+Zadanie 6 (httpClient)
+Komendy uruchomienia:
+1) java -cp build\classes\java\main kstcp.httpClient
+Wyniki:
+- termit.ie.tu.koszalin.pl -> blad I/O (Connection refused)
+- kos.man.koszalin.pl -> timeout 5000 ms
+- www.weii.tu.koszalin.pl -> HTTP 301 Moved Permanently
+- zapisany plik: downloaded_pages\www.weii.tu.koszalin.pl.html (0 B)
+
+Zadanie 7 (JHTTPServer)
+Komendy uruchomienia:
+2) (terminal 1) java -cp build\classes\java\main kstcp.jHTTPServer
+3) (terminal 2, test przegladarkowy) curl.exe -i http://127.0.0.1/
+4) (terminal 2, test HttpClient) java -cp build\classes\java\main kstcp.httpClient 127.0.0.1
+Wyniki:
+- test HTTP klientem: 200 OK
+- komunikacja httpClient -> JHTTPServer: 200 OK
+- zapisany plik: downloaded_pages\127.0.0.1.html (252 B)
+
+Zadanie 8 (JHTTPApp)
+Komendy uruchomienia:
+2) (terminal 1) java -cp build\classes\java\main kstcp.jHTTPApp
+3) (terminal 2, test przegladarkowy) curl.exe -i http://127.0.0.1/
+4) (terminal 2, test HttpClient) java -cp build\classes\java\main kstcp.httpClient 127.0.0.1
+Wyniki:
+- test HTTP klientem: 200 OK, Content-Type: text/html; charset=iso-8859-2
+- komunikacja httpClient -> JHTTPApp: 200 OK
+- zapisany plik: downloaded_pages\127.0.0.1.html (259 B)
+
+Zadanie 9 (SimpleServer + SimpleClient)
+Komendy uruchomienia:
+2) (terminal 1) java -cp build\classes\java\main kstcp.SimpleServer 4444
+3) (terminal 1) java -cp build\classes\java\main kstcp.SimpleClient 127.0.0.1 4444
+4) (test backlog) java -cp build\classes\java\main kstcp.SimpleServer 4444 50
+Wyniki:
+a) polaczenie:
+  - serwer: kstcp.SimpleServer 4444
+  - klient: kstcp.SimpleClient 127.0.0.1 4444
+  - wynik: poprawna komunikacja
+b) kolejka klientow:
+  - serwer backlog=50
+  - udane polaczenia lacznie: 51 (1 aktywne + ok. 50 oczekujacych)
+  - nieudane/timeout: 150
+
+Zadanie dodatkowe 10
+1) scannerPorts wielowatkowy (host 127.0.0.1, porty 1-5000, timeout 200 ms)
+Komenda uruchomienia:
+    java -cp build\classes\java\main kstcp.scannerPorts --host=127.0.0.1 --from=1 --to=5000 --timeout=200 --compare
+Wyniki:
+  - iteracyjny: 15399 ms
+  - 2 watki: 6200 ms
+  - 5 watkow: 3233 ms
+  - 10 watkow: 822 ms
+
+2) serwer daytime TCP (port 13) - iteracyjny i wspolbiezny
+Komendy uruchomienia:
+1) java -cp build\classes\java\main kstcp.dayTimeServerIterative
+2) java -cp build\classes\java\main kstcp.dayTimeServerConcurrent
+3) test klienta: java -cp build\classes\java\main kstcp.dayTimeClient 127.0.0.1 13 13 2000
+Wynik:
+  - wariant iteracyjny: poprawny
+  - wariant wspolbiezny: poprawny (wiele klientow rownolegle)
+
+Pop3/SMTP (dodatkowe klasy w src)
+Komendy uruchomienia:
+1) POP3: java -cp build\classes\java\main pop3Client <adres_hosta> <uzytkownik> <haslo>
+2) SMTP: java -cp build\classes\java\main smtpClient

@@ -1,0 +1,20 @@
+Zadanie 6 - Przyklad 5 (HttpClient)
+Data uruchomienia: 2026-03-08
+Polecenie uruchomienia:
+  java -cp build\classes\java\main kstcp.httpClient
+
+Wyniki dla hostow:
+1) termit.ie.tu.koszalin.pl
+   - rezultat: blad I/O
+   - komunikat: Connection refused: no further information
+   - plik: brak (polaczenie nie zostalo nawiazane)
+
+2) kos.man.koszalin.pl
+   - rezultat: timeout po 5000 ms
+   - plik: brak (brak pelnej odpowiedzi HTTP)
+
+3) www.weii.tu.koszalin.pl
+   - status HTTP: 301 Moved Permanently
+   - naglowek Location: http://weii.tu.koszalin.pl/
+   - zapisany plik: downloaded_pages\www.weii.tu.koszalin.pl.html
+   - rozmiar pliku: 0 B (serwer zwrocil Content-length: 0)

@@ -1,0 +1,28 @@
+Zadanie 7 - Przyklad 6 (JHTTPServer)
+Data testow: 2026-03-08
+
+a) Test serwera przez klienta HTTP (przegladarkowy)
+Uruchomienie serwera:
+  java -cp build\classes\java\main kstcp.jHTTPServer
+Test zapytania:
+  curl.exe -i http://127.0.0.1/
+Wynik:
+  - polaczenie poprawne
+  - status HTTP: 200 OK
+  - serwer zwrocil dokument HTML "jHTTPServer demo document"
+  - w logu serwera: pierwsza linia zapytania "GET / HTTP/1.1"
+
+b) Komunikacja HttpClient -> JHTTPServer
+Uruchomienie serwera:
+  java -cp build\classes\java\main kstcp.jHTTPServer
+Uruchomienie klienta:
+  java -cp build\classes\java\main kstcp.httpClient 127.0.0.1
+Wynik:
+  - klient polaczyl sie z 127.0.0.1:80
+  - odpowiedz HTTP: 200 OK
+  - dokument zapisany do pliku: downloaded_pages\127.0.0.1.html
+  - rozmiar zapisanego pliku: 252 B
+
+c) Podsumowanie
+  - JHTTPServer odpowiada poprawnie na zapytanie GET.
+  - HttpClient z przykladu 5 komunikuje sie z JHTTPServer i zapisuje dokument do pliku.
