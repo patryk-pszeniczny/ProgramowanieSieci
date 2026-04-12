@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 public class CookiesServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Cookie autorCookie = new Cookie("autor", "verdu");
@@ -39,24 +41,10 @@ public class CookiesServlet extends HttpServlet {
                     "<P>\n" +
                     "Trzy sposrod utworzonych cookies sa skojarzone wylacznie \n" +
                     "z biezaca sesja, natomiast pozostale trzy sa trwale.\n" +
-                    "<HR><H3>Cookie \"autor\" (wymagane w zadaniu)</H3>\n" +
-                    "<B>Nazwa</B>: " + escapeHtml(autorCookie.getName()) + "<BR>\n" +
-                    "<B>Wartosc</B>: " + escapeHtml(autorCookie.getValue()) + "<BR>\n" +
-                    "<B>Komentarz</B>: " + escapeHtml(autorCookie.getAttribute("Comment")) + "<BR>\n" +
-                    "<B>Czas trwania</B>: " + autorCookie.getMaxAge() + " sekund\n" +
-                    "<P><A HREF=\"" + request.getContextPath() + "/\">Powrot</A></P>\n" +
+                    "Teraz zamknij przegladarke, uruchom ja i ponownie wyswietl\n" +
+                    "serwlet <CODE>ShowCookies</CODE>, aby sprawdzic czy \n" +
+                    "trzy trwale cookies sa dostepne takze w nowej sesji.\n" +
                     "</BODY></HTML>");
         }
-    }
-
-    private static String escapeHtml(String value) {
-        if (value == null) {
-            return "";
-        }
-        return value
-                .replace("&", "&amp;")
-                .replace("<", "&lt;")
-                .replace(">", "&gt;")
-                .replace("\"", "&quot;");
     }
 }

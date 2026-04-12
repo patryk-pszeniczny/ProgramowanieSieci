@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 public class ShowCookiesServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html; charset=UTF-8");
@@ -23,28 +25,13 @@ public class ShowCookiesServlet extends HttpServlet {
                     "<TH>Wartosc cookie</TH>\n" +
                     "</TR>\n");
             Cookie[] cookies = request.getCookies();
-            if (cookies != null) {
-                for (Cookie cookie : cookies) {
-                    out.println("<TR>\n" +
-                            "<TD>" + escapeHtml(cookie.getName()) + "</TD>\n" +
-                            "<TD>" + escapeHtml(cookie.getValue()) + "</TD>\n" +
-                            "</TR>\n");
-                }
+            for (Cookie cookie : cookies) {
+                out.println("<TR>\n" +
+                        "<TD>" + cookie.getName() + "</TD>\n" +
+                        "<TD>" + cookie.getValue() + "</TD>" +
+                        "</TR>\n");
             }
-            out.println("</TABLE>\n");
-            out.println("<P><A HREF=\"" + request.getContextPath() + "/\">Powrot</A></P>\n");
-            out.println("</BODY></HTML>");
+            out.println("</TABLE></BODY></HTML>");
         }
-    }
-
-    private static String escapeHtml(String value) {
-        if (value == null) {
-            return "";
-        }
-        return value
-                .replace("&", "&amp;")
-                .replace("<", "&lt;")
-                .replace(">", "&gt;")
-                .replace("\"", "&quot;");
     }
 }
