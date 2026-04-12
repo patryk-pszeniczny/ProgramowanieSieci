@@ -1,0 +1,2 @@
+java -cp build/classes/java/main rmi.EchoRmi.EchoServer
+java -cp build/classes/java/main rmi.EchoRmi.EchoClient 127.0.0.1 "Echo test przez RMI"

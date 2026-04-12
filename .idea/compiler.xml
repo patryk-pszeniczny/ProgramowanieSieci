@@ -11,6 +11,9 @@
       <module name="Zadanie3" target="25" />
       <module name="Zadanie3.main" target="25" />
       <module name="Zadanie3.test" target="25" />
+      <module name="Zadanie4" target="24" />
+      <module name="Zadanie4.main" target="24" />
+      <module name="Zadanie4.test" target="24" />
     </bytecodeTargetLevel>
   </component>
 </project>

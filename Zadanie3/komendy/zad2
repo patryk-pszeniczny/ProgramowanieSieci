@@ -1,0 +1,4 @@
+java -cp src/main/java/shopdata/lib/hsqldb.jar org.hsqldb.server.Server --database.0 file:./src/main/java/shopdata/data/shopdb --dbname.0 shopdb
+java -cp "build/classes/java/main;src/main/java/shopdata/lib/hsqldb.jar" rmi.DBrmi.DBServer
+java -cp "build/classes/java/main;src/main/java/shopdata/lib/hsqldb.jar" rmi.DBrmi.DBClient
+java -jar src/main/java/shopdata/lib/sqltool.jar --rcfile=src/main/java/shopdata/sqltool.rc --sql "SHUTDOWN;" shopdb

@@ -12,6 +12,9 @@
       <module fileurl="file://$PROJECT_DIR$/Zadanie3.iml" filepath="$PROJECT_DIR$/Zadanie3.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Zadanie3.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Zadanie3.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Zadanie3.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Zadanie3.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Zadanie4.iml" filepath="$PROJECT_DIR$/Zadanie4.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Zadanie4.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Zadanie4.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Zadanie4.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Zadanie4.test.iml" />
     </modules>
   </component>
 </project>

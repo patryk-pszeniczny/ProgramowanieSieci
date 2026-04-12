@@ -48,10 +48,10 @@ public class StockClientGraph extends Applet implements StockUpdate {
    Frame f = new Frame();
    f.add("Center", client);
    f.setSize(400,200);
-   f.show();
+   f.setVisible(true);
     
     try {
-      UnicastRemoteObject.exportObject(client);  // aktywacja obiektu client
+      UnicastRemoteObject.exportObject(client, 0);  // aktywacja obiektu client (bez statycznego _Stub)
       StockInterface stockObject = (StockInterface)Naming.lookup("rmi://127.0.0.1:1099/StockTpsa");
       stockObject.regCallback(client);
     } catch (Exception ex) {

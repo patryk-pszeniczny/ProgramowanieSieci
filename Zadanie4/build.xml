@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Zadanie4" default="war" basedir=".">
+    <property name="src.dir" value="src/main/java"/>
+    <property name="web.dir" value="src/main/webapp"/>
+    <property name="build.dir" value="build-ant"/>
+    <property name="classes.dir" value="${build.dir}/classes"/>
+    <property name="webapp.dir" value="${build.dir}/webapp"/>
+    <property name="dist.dir" value="dist"/>
+    <property name="war.name" value="Zadanie4.war"/>
+
+    <property name="tomcat.home" value="C:/Users/verdu/Desktop/apache-tomcat-11.0.11"/>
+    <property name="servlet.api.jar" value="${tomcat.home}/lib/servlet-api.jar"/>
+
+    <target name="clean">
+        <delete dir="${build.dir}"/>
+        <delete dir="${dist.dir}"/>
+    </target>
+
+    <target name="init">
+        <mkdir dir="${classes.dir}"/>
+        <mkdir dir="${webapp.dir}/WEB-INF/classes"/>
+        <mkdir dir="${dist.dir}"/>
+    </target>
+
+    <target name="compile" depends="init">
+        <javac srcdir="${src.dir}" destdir="${classes.dir}" includeantruntime="false" encoding="UTF-8">
+            <classpath>
+                <pathelement location="${servlet.api.jar}"/>
+            </classpath>
+            <include name="org/example/**/*.java"/>
+        </javac>
+    </target>
+
+    <target name="prepare-webapp" depends="compile">
+        <copy todir="${webapp.dir}">
+            <fileset dir="${web.dir}"/>
+        </copy>
+        <copy todir="${webapp.dir}/WEB-INF/classes">
+            <fileset dir="${classes.dir}"/>
+        </copy>
+    </target>
+
+    <target name="war" depends="prepare-webapp">
+        <war destfile="${dist.dir}/${war.name}" webxml="${webapp.dir}/WEB-INF/web.xml">
+            <fileset dir="${webapp.dir}" excludes="WEB-INF/web.xml"/>
+        </war>
+    </target>
+
+    <target name="deploy" depends="war">
+        <copy file="${dist.dir}/${war.name}" todir="${tomcat.home}/webapps"/>
+    </target>
+</project>

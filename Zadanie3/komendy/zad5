@@ -1,0 +1,2 @@
+java -cp build/classes/java/main rmi.CalculatorCallback.CalculatorServer
+java -cp build/classes/java/main rmi.CalculatorCallback.CalculatorClient

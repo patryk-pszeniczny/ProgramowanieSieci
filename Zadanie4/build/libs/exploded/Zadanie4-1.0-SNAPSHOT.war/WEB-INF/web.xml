@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
+         version="6.0">
+
+    <display-name>Zadanie4</display-name>
+
+    <context-param>
+        <param-name>uczelnia</param-name>
+        <param-value>Politechnika Koszalinska</param-value>
+    </context-param>
+    <context-param>
+        <param-name>przedmiot</param-name>
+        <param-value>Witryny i portale internetowe</param-value>
+    </context-param>
+    <context-param>
+        <param-name>prowadzacy</param-name>
+        <param-value>dr inz. Bernatowicz</param-value>
+    </context-param>
+
+    <servlet>
+        <servlet-name>InitParamServlet</servlet-name>
+        <servlet-class>org.example.wipi.InitParamServlet</servlet-class>
+        <init-param>
+            <param-name>imie</param-name>
+            <param-value>Jan</param-value>
+        </init-param>
+        <init-param>
+            <param-name>nazwisko</param-name>
+            <param-value>Kowalski</param-value>
+        </init-param>
+        <init-param>
+            <param-name>wiek</param-name>
+            <param-value>25</param-value>
+        </init-param>
+        <init-param>
+            <param-name>plec</param-name>
+            <param-value>mezczyzna</param-value>
+        </init-param>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>InitParamServlet</servlet-name>
+        <url-pattern>/init-param</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InitParamServlet</servlet-name>
+        <url-pattern>/init.html</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>FormParamServlet</servlet-name>
+        <servlet-class>org.example.wipi.FormParamServlet</servlet-class>
+        <init-param>
+            <param-name>domyslneImie</param-name>
+            <param-value>Jan</param-value>
+        </init-param>
+        <init-param>
+            <param-name>domyslneNazwisko</param-name>
+            <param-value>Kowalski</param-value>
+        </init-param>
+        <init-param>
+            <param-name>domyslnyWiek</param-name>
+            <param-value>20</param-value>
+        </init-param>
+        <init-param>
+            <param-name>domyslnaPlec</param-name>
+            <param-value>nieznana</param-value>
+        </init-param>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FormParamServlet</servlet-name>
+        <url-pattern>/form-param</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FormParamServlet</servlet-name>
+        <url-pattern>/param</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>HeaderServlet</servlet-name>
+        <servlet-class>org.example.wipi.HeaderServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>HeaderServlet</servlet-name>
+        <url-pattern>/header-info</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>HeaderServlet</servlet-name>
+        <url-pattern>/ShowRequestHeader</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>CookiesServlet</servlet-name>
+        <servlet-class>org.example.wipi.CookiesServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CookiesServlet</servlet-name>
+        <url-pattern>/cookies</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CookiesServlet</servlet-name>
+        <url-pattern>/SetCookies</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ShowCookiesServlet</servlet-name>
+        <servlet-class>org.example.wipi.ShowCookiesServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ShowCookiesServlet</servlet-name>
+        <url-pattern>/ShowCookies</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>SessionInfoServlet</servlet-name>
+        <servlet-class>org.example.wipi.SessionInfoServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SessionInfoServlet</servlet-name>
+        <url-pattern>/session-info</url-pattern>
+    </servlet-mapping>
+
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+</web-app>
