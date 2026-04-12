@@ -18,20 +18,32 @@
     Imie: <jsp:getProperty name="personBean"
                            property="imie"/><BR>
     Nazwisko: <jsp:getProperty name="personBean"
-                               property="nazwisko"/>
+                               property="nazwisko"/><BR>
+    Wiek: <jsp:getProperty name="personBean"
+                           property="wiek"/><BR>
+    Plec: <jsp:getProperty name="personBean"
+                           property="plec"/>
 </p>
 
 <jsp:setProperty name="personBean"
                  property="imie" value="Andrzej"/>
 <jsp:setProperty name="personBean"
                  property="nazwisko" value="Nowak"/>
+<jsp:setProperty name="personBean"
+                 property="wiek" value="24"/>
+<jsp:setProperty name="personBean"
+                 property="plec" value="mezczyzna"/>
 
 <p>
     <b>Dane osoby po zmianie:</b><BR>
     Imie: <jsp:getProperty name="personBean"
                            property="imie"/><BR>
     Nazwisko: <jsp:getProperty name="personBean"
-                               property="nazwisko"/>
+                               property="nazwisko"/><BR>
+    Wiek: <jsp:getProperty name="personBean"
+                           property="wiek"/><BR>
+    Plec: <jsp:getProperty name="personBean"
+                           property="plec"/>
 </p>
 </body>
 </html>
